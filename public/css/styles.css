@@ -1,8 +1,35 @@
+.parallaxA{
+    background:linear-gradient(rgba(0,0,0,.4),rgb(44, 62, 80,.7)), url('/storage/background1.jpg');
+    /* Full height */
+    height: 100%; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .parallaxB{
+    background:linear-gradient(rgba(0,0,0,.4),rgb(44, 62, 80,.7)), url('/storage/hero-bg.jpg');
+    /* Full height */
+    height: 100%; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
 .bg-transparent{
     background-color: transparent!important;
     border-color: transparent!important;
 }
 
+.row {
+    margin: 0!important;
+}
 
 #chatter button.btn.btn-primary {
     border: 2px solid #f1f5ff;
@@ -343,6 +370,163 @@ body{
     font-size: 13px;
 }
 
+.fix{
+    vertical-align: top;
+    font-size:20px;
+}
+
+.listview.view-icons-large .node {
+    width: 270px;
+    margin: 2px;
+    padding: 10px;
+}
+
+.d-flex .img-container{
+    width:280px;
+    padding:5px;
+}
+
+.op-transparent{
+    background:transparent!important;
+    transition: all .4s ease-in-out;
+}
+
+.img-container{
+   background: #F5F5F5;
+   margin: 5px;
+}
+
+.img-container img{
+    height: 100%;
+}
+
+.img-container:hover {
+    transform: scale(1.026);
+    transition: all .3s ease-in-out;
+}
+
+.panel .panel-title {
+    border-bottom: 0px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.panel .panel-title p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel .panel-description p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.1rem 2rem;
+    max-width: 510px;
+}
+
+.panel-home .card, .management .card {
+    text-decoration: none !important;
+    border: 1px solid transparent;
+    transition: .2s ease-in-out border-color;
+    -o-transition: .2s ease-in-out border-color;
+    -moz-transition: .2s ease-in-out border-color;
+    -webkit-transition: .2s ease-in-out border-color;
+}
+
+.fa-stack {
+    display: inline-block;
+    height: 2em;
+    line-height: 2em;
+    position: relative;
+    vertical-align: middle;
+    width: 2.5em;
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+.panel-about .card p {
+    font-size: 1.3rem;
+    margin-top: 20px;
+    margin-right: 10px;
+    text-align: justify;
+}
+.text-muted {
+    color: rgba(0, 0, 0, .8)!important;
+
+}
+
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}
+.pr-4, .px-4 {
+    padding-right: 1.5rem!important;
+}
+
+.font-weight-bold{
+    font-weight: 700!important;
+    color:black;
+}
+
+.icon {
+    margin-top:25px;
+    height: 120px;
+    width: 120px;
+}
+
+.panel-logo{
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.panel-logo img{
+    width: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(44, 62, 80,.9); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(44, 62, 80);
+  }
+
 @media (min-width:375px){
     #chatter ul.discussions li a.discussion_list .chatter_middle, #chatter ul.discussions li .chatter_posts .chatter_middle {
         float: left;
@@ -356,4 +540,28 @@ body{
     #chatter.discussion #editor #tinymce_placeholder {
         display:initial!important;
     }
+}
+
+@media(min-width: 500px){
+    #chatter.discussion #editor #tinymce_placeholder {
+        display:initial!important;
+    }
+}
+
+
+@media (min-width: 992px){
+    .panel-home{
+        width: 100vw;
+        padding-top: 10px;
+    }  
+}
+@media (min-width: 1200px){
+    .panel-home{
+        width: 100vw;
+    }
+    .panel-about{
+        width: 80vw;
+        margin-right: 10vw;
+        margin-left: 10vw;
+    }    
 }

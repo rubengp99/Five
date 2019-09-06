@@ -11,8 +11,12 @@
 |
 */
 
+Route::Redirect('/','/home');
 
-Route::redirect('/', '/forums');
+
+Route::get('/home', function(){
+    return view('home');
+});
 
 Auth::routes();
 
