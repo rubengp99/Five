@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     @yield('css')
     <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
@@ -32,8 +31,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand bold-brand text-white" href="{{ url('/home') }}">
-                        No Limit Roleplay
+                    <a class="navbar-brand bold-brand text-white" href="{{ url('/home') }}" style="margin-top: 0px;padding: 8px;font-family: adrip;letter-spacing: 2px;font-size: 26px!important;">
+                        <img src="/storage/logo.png" width="40px" height="40px" style="display:inline-block;"> No Limit Roleplay
                     </a>
                 </div>
 
@@ -76,39 +75,15 @@
                 </div>
             </div>
         </nav>
-
+        
         @yield('content')
-        <footer class="footer bg-dark pt-5">
-                <div class="container">
-                    <ul class="list-unstyled list-inline text-center">
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-fb mx-1">
-                            <i class="fa fa-facebook-f text-white"> </i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-tw mx-1">
-                            <i class="fa fa-twitter text-white"> </i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn-floating btn-gplus mx-1">
-                            <i class="fa fa-instagram text-white"> </i>
-                            </a>
-                        </li>            
-                    </ul>
-                </div>
-                <div class="footer-copyright text-center py-3 text-white">© 2019 Copyright:
-                    <a href=""> No Limit Roleplay</a>
-                </div>
-        </footer>
+        
     </div>
-
+    
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('js')
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
 </body>
 </html>
