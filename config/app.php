@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://fivedemo.herokuapp.com/forums'),
+    'url' => env('APP_URL', 'https://fivedemo.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
