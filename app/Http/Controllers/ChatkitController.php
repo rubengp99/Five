@@ -12,7 +12,7 @@ class ChatkitController extends Controller
         public function __construct()
         {
             $this->chatkit = app('ChatKit');
-            $this->roomId = env('CHATKIT_GENERAL_ROOM_ID');
+            $this->roomId ='e01b3fa9-3295-4178-9521-dbd5d5757cbd';
         }
 
         /**

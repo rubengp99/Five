@@ -35,7 +35,7 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'chatkit' => [
-        'secret' => env('CHATKIT_SECRET_KEY'),
-        'locator' => env('CHATKIT_INSTANCE_LOCATOR'),
+        'secret' => '128b572d-57d3-48d9-be20-750830631640:xWnpdAO8u05Hf2RQqmziuyLp6usyV92FJVSlszQTukA=',
+        'locator' => 'v1:us1:3f398fc6-25dc-423b-9dc1-dda190688d3d',
     ],
 ];
