@@ -34,5 +34,8 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'chatkit' => [
+        'secret' => env('CHATKIT_SECRET_KEY'),
+        'locator' => env('CHATKIT_INSTANCE_LOCATOR'),
+    ],
 ];

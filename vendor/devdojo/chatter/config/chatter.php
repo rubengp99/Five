@@ -148,7 +148,7 @@ return [
 
     'security' => [
         'limit_time_between_posts' => true, //
-        'time_between_posts'       => 1, // In minutes
+        'time_between_posts'       => 5, // In minutes
     ],
 
     /*
@@ -186,8 +186,8 @@ return [
     */
 
     'tinymce' => [
-        'toolbar' => 'bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
-        'plugins' => 'link, image',
+        'toolbar' => 'bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image | upload image',
+        'plugins' => 'link, image,upload',
     ],
 
     /*
@@ -251,7 +251,7 @@ return [
     */
 
     'paginate' => [
-        'num_of_results' => 10,
+        'num_of_results' => 5,
     ],
     
     /*

@@ -1,5 +1,9 @@
 @extends(Config::get('chatter.master_file_extend'))
 
+@php
+	$chatter_editor = 'trumbowyg';
+@endphp
+
 @section(Config::get('chatter.yields.head'))
     @if(Config::get('chatter.sidebar_in_discussion_view'))
         <link href="{{ url('/vendor/devdojo/chatter/assets/vendor/spectrum/spectrum.css') }}" rel="stylesheet">
@@ -78,19 +82,18 @@
                 </div>
                 <div class="col-md-9 right-column">
             @endif
-
-				<div class="conversation">
-	                <ul class="discussions no-bg" style="display:block;">
+				<div class="conversation" style="margin-bottom: 0;">
+	                <ul class="discussions no-bg" style="display:block;    margin-bottom: 0px;">
 	                	@foreach($posts as $post)
 	                		<li data-id="{{ $post->id }}" data-markdown="{{ $post->markdown }}">
-		                		<span class="chatter_posts">
+		                		<span class="chatter_posts" style="    margin-bottom: 0;">
 		                			@if(!Auth::guest() && (Auth::user()->id == $post->user->id))
 		                				<div id="delete_warning_{{ $post->id }}" class="chatter_warning_delete">
 		                					<i class="chatter-warning"></i> @lang('chatter::messages.response.confirm')
-		                					<button class="btn btn-sm btn-danger pull-right delete_response">@lang('chatter::messages.response.yes_confirm')</button>
-		                					<button class="btn btn-sm btn-default pull-right">@lang('chatter::messages.response.no_confirm')</button>
+		                					<button class="btn btn-sm btn-primary pull-right delete_response" style="height: 100%!important;">@lang('chatter::messages.response.yes_confirm')</button>
+		                					<button class="btn btn-sm btn-default pull-right"  style="height: 100%!important;">@lang('chatter::messages.response.no_confirm')</button>
 		                				</div>
-			                			<div class="chatter_post_actions">
+			                			<div class="chatter_post_actions" style="z-index: 1000;">
 			                				<p class="chatter_delete_btn">
 			                					<i class="chatter-delete"></i> @lang('chatter::messages.words.delete')
 			                				</p>
@@ -112,14 +115,16 @@
 					        				@endif
 
 					        			@else
-					        				<span class="chatter_avatar_circle" style="background-color:#<?= \DevDojo\Chatter\Helpers\ChatterHelper::stringToColorCode($post->user->{Config::get('chatter.user.database_field_with_user_name')}) ?>">
-					        					{{ ucfirst(substr($post->user->{Config::get('chatter.user.database_field_with_user_name')}, 0, 1)) }}
-					        				</span>
+											<span class="chatter_avatar_circle">
+												<img src="/storage/{{$post->user->profile_image}}">
+											</span>
 					        			@endif
 					        		</div>
 
 					        		<div class="chatter_middle">
-					        			<span class="chatter_middle_details"><a href="{{ \DevDojo\Chatter\Helpers\ChatterHelper::userLink($post->user) }}">{{ ucfirst($post->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</a> <span class="ago chatter_middle_details">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}</span></span>
+										<span class="chatter_middle_details"><a href="{{ \DevDojo\Chatter\Helpers\ChatterHelper::userLink($post->user) }}">{{ ucfirst($post->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</a> 
+										<br>
+										<span class="ago chatter_middle_details" style="padding:0;">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}</span></span>
 					        			<div class="chatter_body">
 
 					        				@if($post->markdown)
@@ -146,9 +151,9 @@
 
 	            @if(!Auth::guest())
 
-	            	<div id="new_response">
+	            	<div id="new_response" style="max-width:93.750vw;padding-left:15px;">
 
-	            		<div class="chatter_avatar">
+	            		<div class="chatter_avatar" style="    margin-left: 5px;">
 		        			@if(Config::get('chatter.user.avatar_image_database_field'))
 
 		        				<?php $db_field = Config::get('chatter.user.avatar_image_database_field'); ?>
@@ -161,13 +166,19 @@
 		        				@endif
 
 		        			@else
-		        				<span class="chatter_avatar_circle" style="background-color:#<?= \DevDojo\Chatter\Helpers\ChatterHelper::stringToColorCode(Auth::user()->{Config::get('chatter.user.database_field_with_user_name')}) ?>">
-		        					{{ strtoupper(substr(Auth::user()->{Config::get('chatter.user.database_field_with_user_name')}, 0, 1)) }}
-		        				</span>
+								<span class="chatter_avatar_circle">
+									<img src="/storage/{{$post->user->profile_image}}">
+								</span>
 		        			@endif
 		        		</div>
-
-			            <div id="new_discussion">
+						<div class="chatter_middle name">
+							<span class="chatter_middle_details">
+								<a href="#_">Hanzor</a>
+							</span>
+							<br>
+							<span class="ago chatter_middle_details" style="padding: 0px;color:rgb(52, 152, 219)!important;">You, right now</span> 
+						</div>
+			            <div id="new_discussion" style="width: 100%!important;margin-top: 40px;">
 
 
 					    	<div class="chatter_loader dark" id="new_discussion_loader">
@@ -180,11 +191,11 @@
 						    	<div id="editor">
 									@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
 										<label id="tinymce_placeholder">@lang('chatter::messages.editor.tinymce_placeholder')</label>
-					    				<textarea id="body" class="richText" name="body" placeholder="">{{ old('body') }}</textarea>
+					    				<textarea id="body" class="richText" name="body" placeholder="">{{old('body')}}</textarea>
 					    			@elseif($chatter_editor == 'simplemde')
-					    				<textarea id="simplemde" name="body" placeholder="">{{ old('body') }}</textarea>
+					    				<textarea id="simplemde" name="body" placeholder="">{{old('body')}}</textarea>
 									@elseif($chatter_editor == 'trumbowyg')
-										<textarea class="trumbowyg" name="body" placeholder="Type Your Discussion Here...">{{ old('body') }}</textarea>
+										<textarea class="trumbowyg" name="body" placeholder="Type Your Discussion Here...">{{old('body')}}</textarea>
 									@endif
 								</div>
 
@@ -193,8 +204,17 @@
 						    </form>
 
 						</div><!-- #new_discussion -->
-						<div id="discussion_response_email">
-							<button id="submit_response" class="btn btn-success pull-right"><i class="chatter-new"></i> @lang('chatter::messages.response.submit')</button>
+						<div id="discussion_response_email" style="height: 30px;">
+							<button id="submit_response" class="btn btn-primary pull-right" style="margin-top: 5px;left: 50%;transform: translateX(-50%);position:absolute;">
+								<ul style="margin: 0;">
+									<li style="display: inline-block">
+										<ion-icon name="create" style="vertical-align:middle;"></ion-icon>
+									</li>
+									<li style="display: inline-block">
+										<p style="margin:0;">  @lang('chatter::messages.response.submit')</p>
+									</li>
+								</ul>
+							</button>
 							@if(Config::get('chatter.email.enabled'))
 								<div id="notify_email">
 									<img src="{{ url('/vendor/devdojo/chatter/assets/images/email.gif') }}" class="chatter_email_loader">
@@ -287,6 +307,8 @@
 
 </div>
 
+
+
 @if($chatter_editor == 'tinymce' || empty($chatter_editor))
     <input type="hidden" id="chatter_tinymce_toolbar" value="{{ Config::get('chatter.tinymce.toolbar') }}">
     <input type="hidden" id="chatter_tinymce_plugins" value="{{ Config::get('chatter.tinymce.plugins') }}">
@@ -297,7 +319,7 @@
 
 @section(Config::get('chatter.yields.footer'))
 
-@if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
+@if( $chatter_editor === 'tinymce' || empty($chatter_editor) )
 	<script>var chatter_editor = 'tinymce';</script>
     <script src="{{ url('/vendor/devdojo/chatter/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ url('/vendor/devdojo/chatter/assets/js/tinymce.js') }}"></script>
@@ -311,8 +333,10 @@
 
         });
     </script>
-@elseif($chatter_editor == 'simplemde')
-	<script>var chatter_editor = 'simplemde';</script>
+@elseif($chatter_editor === 'simplemde')
+	<script>
+		var chatter_editor = 'simplemde';
+	</script>
     <script src="{{ url('/vendor/devdojo/chatter/assets/js/simplemde.min.js') }}"></script>
     <script src="{{ url('/vendor/devdojo/chatter/assets/js/chatter_simplemde.js') }}"></script>
 @elseif($chatter_editor == 'trumbowyg')
@@ -321,7 +345,6 @@
     <script src="{{ url('/vendor/devdojo/chatter/assets/vendor/trumbowyg/plugins/preformatted/trumbowyg.preformatted.min.js') }}"></script>
     <script src="{{ url('/vendor/devdojo/chatter/assets/js/trumbowyg.js') }}"></script>
 @endif
-
 @if(Config::get('chatter.sidebar_in_discussion_view'))
     <script src="/vendor/devdojo/chatter/assets/vendor/spectrum/spectrum.js"></script>
 @endif
@@ -330,6 +353,7 @@
 	$('document').ready(function(){
 
 		var simplemdeEditors = [];
+
 
 		$('.chatter_edit_btn').click(function(){
 			parent = $(this).parents('li');
@@ -348,10 +372,10 @@
 			details = container.find('.chatter_middle_details');
 
 			// dynamically create a new text area
-			container.prepend('<textarea id="post-edit-' + id + '"></textarea>');
+			container.prepend('<textarea id="post-edit-'+id+'"></textarea>');
             // Client side XSS fix
-            $("#post-edit-"+id).text(body.html());
-			container.append('<div class="chatter_update_actions"><button class="btn btn-success pull-right update_chatter_edit"  data-id="' + id + '" data-markdown="' + markdown + '"><i class="chatter-check"></i> @lang('chatter::messages.response.update')</button><button href="/" class="btn btn-default pull-right cancel_chatter_edit" data-id="' + id + '"  data-markdown="' + markdown + '">@lang('chatter::messages.words.cancel')</button></div>');
+            $("#post-edit-"+id).text(body.html().trim());
+			container.append('<div class="chatter_update_actions"><button class="btn btn-primary pull-right update_chatter_edit"  data-id="' + id + '" data-markdown="' + markdown + '"><ul style="    margin: 0px;"><li style="display:inline-block;">@lang('chatter::messages.response.update')</li></ul></button><button href="/" class="btn btn-default pull-right cancel_chatter_edit" data-id="' + id + '"  data-markdown="' + markdown + '">@lang('chatter::messages.words.cancel')</button></div>');
 
 			// create new editor from text area
 			if(markdown){
@@ -394,16 +418,16 @@
 			markdown = $(e.target).data('markdown');
 
 			if(markdown){
-				update_body = simplemdeEditors['post-edit-' + post_id].value();
+				var update_body = simplemdeEditors['post-edit-' + post_id].value();
 			} else {
                 @if($chatter_editor == 'tinymce' || empty($chatter_editor))
-                    update_body = tinyMCE.get('post-edit-' + post_id).getContent();
+				var  update_body = tinyMCE.get('post-edit-' + id).getContent();
                 @elseif($chatter_editor == 'trumbowyg')
-                    update_body = $('#post-edit-' + id).trumbowyg('html');
+				var   update_body = $('#post-edit-' + id).trumbowyg('html');
                 @endif
 			}
 
-			$.form('/{{ Config::get('chatter.routes.home') }}/posts/' + post_id, { _token: '{{ csrf_token() }}', _method: 'PATCH', 'body' : update_body }, 'POST').submit();
+			$.form('/{{ Config::get('chatter.routes.home') }}/posts/' + id, { _token: '{{ csrf_token() }}', _method: 'PATCH', 'body' : update_body }, 'POST').submit();
 		});
 
 		$('#submit_response').click(function(){
@@ -419,11 +443,13 @@
 			parent.addClass('delete_warning');
 			id = parent.data('id');
 			$('#delete_warning_' + id).show();
+			$('.chatter_post_actions').css({'top':'85px'});
 		});
 
 		$('.chatter_warning_delete .btn-default').click(function(){
 			$(this).parent('.chatter_warning_delete').hide();
 			$(this).parents('li').removeClass('delete_warning');
+			$('.chatter_post_actions').css({'top':'15px'});
 		});
 
 		$('.delete_response').click(function(){

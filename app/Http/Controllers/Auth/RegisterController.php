@@ -22,6 +22,9 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    private $chatkit;
+    private $roomId;
+
     /**
      * Where to redirect users after registration.
      *
@@ -37,6 +40,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->chatkit = app('ChatKit');
+        $this->roomId = 'e01b3fa9-3295-4178-9521-dbd5d5757cbd';
     }
 
     /**
@@ -51,6 +56,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'avatar' => 'required',
         ]);
     }
 
@@ -62,9 +68,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user=\DB::table('users')->where('email','=',$data['email'])->get();
+        // Create User account on Chatkit
+        $this->chatkit->createUser([
+            'id' =>  $data['email'],
+            'name' =>  $data['name'],
+            'custom_data' => [
+                'avatar' => $data['avatar'],
+              ] 
+        ]);
+
+        $this->chatkit->addUsersToRoom([
+            'user_ids' => [$data['email']],
+            'room_id' => $this->roomId
+        ]);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'profile_image' => $data['avatar'],
             'password' => bcrypt($data['password']),
         ]);
     }

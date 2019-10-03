@@ -67,7 +67,7 @@
                             </div>
                             <div class="col">
                                     <div class="card rounded mb-4">
-                                        <div class="card-body">
+                                        <div class="card-body" >
                                             <div class="d-flex">
                                                 <div class="mr-auto pr-4">
                                                     <h4 class="font-weight-bold">Your Experience</h4>

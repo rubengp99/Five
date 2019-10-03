@@ -7,11 +7,19 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
+    /**
+         * Show the application chat room.
+         *
+         * @return \Illuminate\Contracts\Support\Renderable
+         */
+        
     public function boot()
     {
         if(config('app.env') === 'production') {
@@ -27,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('ChatKit', function() {
+        return new \Chatkit\Chatkit([
+            'instance_locator' => config('services.chatkit.locator'),
+            'key' => config('services.chatkit.secret'),
+        ]);
+    });
     }
 }
