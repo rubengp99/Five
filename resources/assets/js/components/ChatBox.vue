@@ -107,7 +107,7 @@ export default {
         },
         getUsers(e) {
             // axios.get(`${process.env.MIX_APP_URL}/api/users`)
-            axios.get(`https://fivedemo.herokuapp.com/api/users`)
+            axios.get('https://fivedemo.herokuapp.com/api/users')
                 .then(res => {
                     this.users = res['data']['body']
                 });
@@ -116,7 +116,7 @@ export default {
         sendMessage(e) {
             //axios.post( `${process.env.MIX_APP_URL}/api/message`
             if (this.message.trim() === '') return;
-            axios.post( `https://fivedemo.herokuapp.com/api/message`, {
+            axios.post( 'https://fivedemo.herokuapp.com/api/message', {
                 user: this.userId,
                 message: this.message,
             })
