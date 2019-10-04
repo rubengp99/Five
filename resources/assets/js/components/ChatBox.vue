@@ -67,7 +67,6 @@ export default {
             const chatManager = new Chatkit.ChatManager({
                 instanceLocator: process.env.MIX_CHATKIT_INSTANCE_LOCATOR,
                 userId: this.userId,
-                connectionTimeout: 40000,
                 tokenProvider,
             });
             chatManager.connect(e)
