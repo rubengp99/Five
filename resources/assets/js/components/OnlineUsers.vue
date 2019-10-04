@@ -57,7 +57,7 @@ export default {
                 url: `https://fivedemo.herokuapp.com/api/authenticate`,
             });
             const chatManager = new Chatkit.ChatManager({
-                instanceLocator: process.env.MIX_CHATKIT_INSTANCE_LOCATOR,
+                instanceLocator: `v1:us1:3f398fc6-25dc-423b-9dc1-dda190688d3d`,
                 userId: this.userId,
                 tokenProvider,
             });
