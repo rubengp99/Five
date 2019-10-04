@@ -496,7 +496,7 @@
 							@php ($total_discussions = 0)
 							@php ($title = "")			
 							@foreach($all_discussions as $discussion)
-								@if ($discussion->chatter_category_id===$i)
+								@if ($discussion->chatter_category_id==$i)
 									@php ($servernews+=$discussion->postsCount[0]->total)
 									@php ($total_discussions++)
 									@php ($total_post++)
@@ -506,7 +506,6 @@
 									@php ($category_link = $discussion->findSlug($i))
 									@php ($user = $discussion->username($discussion->last($i)->user_id))
 									@php ($created = $discussion->last($i)->created_at)	
-									@break;
 								@endif
 							@endforeach
 							

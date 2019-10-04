@@ -105720,8 +105720,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                //url: `${process.env.MIX_APP_URL}/api/authenticate`,
                                 tokenProvider = new __WEBPACK_IMPORTED_MODULE_3__pusher_chatkit_client___default.a.TokenProvider({
-                                    url: "http://localhost:8000" + '/api/authenticate'
+                                    url: 'https://fivedemo.herokuapp.com/api/authenticate'
                                 });
                                 chatManager = new __WEBPACK_IMPORTED_MODULE_3__pusher_chatkit_client___default.a.ChatManager({
                                     instanceLocator: "v1:us1:3f398fc6-25dc-423b-9dc1-dda190688d3d",
@@ -105800,7 +105801,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         getUsers: function getUsers(e) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get("http://localhost:8000" + '/api/users').then(function (res) {
+            // axios.get(`${process.env.MIX_APP_URL}/api/users`)
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('https://fivedemo.herokuapp.com/api/users').then(function (res) {
                 _this3.users = res['data']['body'];
             });
             console.log(this.users);
@@ -105808,8 +105810,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         sendMessage: function sendMessage(e) {
             var _this4 = this;
 
+            //axios.post( `${process.env.MIX_APP_URL}/api/message`
             if (this.message.trim() === '') return;
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post("http://localhost:8000" + '/api/message', {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('https://fivedemo.herokuapp.com/api/message', {
                 user: this.userId,
                 message: this.message
             }).then(function (message) {
@@ -107165,7 +107168,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 tokenProvider = new __WEBPACK_IMPORTED_MODULE_3__pusher_chatkit_client___default.a.TokenProvider({
-                                    url: "http://localhost:8000" + '/api/authenticate'
+                                    url: 'https://fivedemo.herokuapp.com/api/authenticate'
                                 });
                                 chatManager = new __WEBPACK_IMPORTED_MODULE_3__pusher_chatkit_client___default.a.ChatManager({
                                     instanceLocator: "v1:us1:3f398fc6-25dc-423b-9dc1-dda190688d3d",
@@ -107245,7 +107248,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     created: function created() {
         this.connectToChatkit();
-        setTimeout(function () {}, 2000);
     }
 });
 
