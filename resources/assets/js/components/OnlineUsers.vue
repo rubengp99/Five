@@ -54,7 +54,7 @@ export default {
         },
         async connectToChatkit(e) {
             const tokenProvider = new Chatkit.TokenProvider({
-                url: `${process.env.MIX_APP_URL}/api/authenticate`,
+                url: `https://fivedemo.herokuapp.com/api/authenticate`,
             });
             const chatManager = new Chatkit.ChatManager({
                 instanceLocator: process.env.MIX_CHATKIT_INSTANCE_LOCATOR,

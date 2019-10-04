@@ -60,12 +60,14 @@ export default {
            return result;
         },
         async connectToChatkit(e) {
+            //url: `${process.env.MIX_APP_URL}/api/authenticate`,
             const tokenProvider = new Chatkit.TokenProvider({
-                url: `${process.env.MIX_APP_URL}/api/authenticate`,
+                url: `https://fivedemo.herokuapp.com/api/authenticate`,
             });
             const chatManager = new Chatkit.ChatManager({
                 instanceLocator: process.env.MIX_CHATKIT_INSTANCE_LOCATOR,
                 userId: this.userId,
+                connectionTimeout: 40000,
                 tokenProvider,
             });
             chatManager.connect(e)
@@ -105,7 +107,7 @@ export default {
         },
         getUsers(e) {
             // axios.get(`${process.env.MIX_APP_URL}/api/users`)
-            axios.get(`${process.env.MIX_APP_URL}/api/users`)
+            axios.get(`https://fivedemo.herokuapp.com/api/users`)
                 .then(res => {
                     this.users = res['data']['body']
                 });
@@ -114,7 +116,7 @@ export default {
         sendMessage(e) {
             //axios.post( `${process.env.MIX_APP_URL}/api/message`
             if (this.message.trim() === '') return;
-            axios.post( `${process.env.MIX_APP_URL}/api/message`, {
+            axios.post( `https://fivedemo.herokuapp.com/api/message`, {
                 user: this.userId,
                 message: this.message,
             })
