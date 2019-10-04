@@ -497,6 +497,7 @@
 							@php ($title = "")			
 							@foreach($all_discussions as $discussion)
 								@if ($discussion->chatter_category_id===$i)
+									@php ($servernews+=$discussion->postsCount[0]->total)
 									@php ($total_discussions++)
 									@php ($total_post++)
 									@php ($category_slug = $discussion->findSlug($discussion->last($i)->chatter_category_id))
@@ -576,7 +577,7 @@
 																@break
 															@else
 																<li style="position: relative;display:block;margin-left:0px;height: 90px;">
-																		<a class="discussion_list most_viewed" style="margin-top: 10px;margin-bottom:10px;" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion_->category->slug }}/{{ $discussion_->slug }}">
+																		<a class="discussion_list most_viewed" style="margin-top: 10px;margin-bottom:10px;position:absolute;top:0;" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion_->category->slug }}/{{ $discussion_->slug }}">
 																			<div class="chatter_avatar avatar_small">
 																				@if(Config::get('chatter.user.avatar_image_database_field'))
 									
