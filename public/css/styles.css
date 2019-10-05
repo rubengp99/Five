@@ -1378,8 +1378,14 @@ dl ul li dd img {
 }
 
 .horiz_align{
-    transform: translate(-3px,-11px);
+    transform: translateY(-11px);
     font-size: 14px;
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    word-break: keep-all;
+    text-align: center;
+    width: 100%;
 }
 
 #users_online .discussions li:hover {

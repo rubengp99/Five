@@ -592,7 +592,7 @@
 									
 																				@else
 									
-																					<span class="chatter_avatar_circle avatar_small">
+																					<span class="chatter_avatar_circle avatar_small" style="background-color: transparent!important;">
 																						<img class=" avatar_small" src="/storage/{{$pic[0]->profile_image}}">
 																					</span>
 									
@@ -603,9 +603,9 @@
 																				<span class="chatter_middle_details">@lang('chatter::messages.discussion.posted_by') <span data-href="/user">{{ ucfirst($discussion_->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span></span>																				
 																			</div>
 									
-																			<div class="chatter_right" style="    left: calc(100% - 50px);">
+																			<div class="chatter_right" style="">
 									
-																				<div class="chatter_count" style="text-align:center;"><ion-icon class="fix" name="eye"></ion-icon> <br><p class="horiz_align">{{ $discussion_->views }}</p></div>
+																				<div class="chatter_count" style="text-align:center;"><ion-icon class="fix" name="eye" style="position:absolute;margin-left: 10px;"></ion-icon> <br><p class="horiz_align">{{ $discussion_->views }}</p></div>
 																			</div>
 									
 																			<div class="chatter_clear"></div>
