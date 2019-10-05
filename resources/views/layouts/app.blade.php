@@ -72,6 +72,11 @@
                             @else
                                 <li><a class="text-white" href="/home"><ion-icon class="fix" name="home"></ion-icon>&nbsp;Home</a></li>
                                 <li><a class="text-white" href="/forums"><ion-icon class="fix" name="list-box"></ion-icon>&nbsp;Forum</a></li>
+                                @if (Auth::user()->role === 'master' || Auth::user()->role === 'admin')
+                                    <li>
+                                        <a class="text-white" href="/{{Auth::user()->role}}_{{Auth::user()->name}}">{{Auth::user()->role}} Panel</a>
+                                    </li>
+                                @endif
                                 @if (Request::is('forums')) 
                                     <li><a class="text-white" id="new_discussion_btn"><ion-icon name="add-circle" class="fix"></ion-icon> @lang('chatter::messages.discussion.new')</a></li>
                                 @endif

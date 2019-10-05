@@ -29,7 +29,7 @@
 </div>
 <div class="parallaxB">
     <div class="row">
-        <div class="col">
+        <div class="col-md-12">
             <div class="panel panel-default panel-about" style="border:0px;background-color: rgba(44, 62, 80,0)!important;">     
                 <div class="panel-body">
                     <!-- -->                   
@@ -105,7 +105,7 @@
 </div>
     
     <div class="row">
-        <div class="col">
+        <div class="col-md-12">
             <div class="panel panel-default" style="margin-bottom: 0;background-color: rgba(44, 62, 80,1)!important;">     
                 <div class="panel-body">
                     <!-- -->

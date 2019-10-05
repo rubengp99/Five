@@ -1,7 +1,7 @@
 @extends(Config::get('chatter.master_file_extend'))
 
 @php
-	$chatter_editor = 'trumbowyg';
+	$chatter_editor = 'simplemde';
 @endphp
 
 @section(Config::get('chatter.yields.head'))
@@ -556,15 +556,16 @@
 				@if (strpos($url,'category') === false)
 					
 				
-				<div class="col-md-4 mt-adjust">					
-						<div class="row adjust mt-adjust">
+				<div class="col-md-4 mt-adjust wide">					
+						<div class="row adjust mt-adjust" style="    left: 50%;
+						transform: translateX(-50%);">
 						<div class="panel" style="width: 100%;    background: rgba(68, 71, 104, 0.7);">
 							<div class="panel-heading panel-heading-bg" style="height: 60px;">
-								<div class="panel-title category_title"><p class="text-white v__align" style="text-align: left;">Most Viewed Discussions</p></div>
+								<div class="panel-title category_title"><p class="text-white v__align" style="text-align: left;">Top Discussions</p></div>
 							</div>	
 								<div class="panel-body" style="width:100%;background: rgba(68, 71, 104, 0.7);">
 									<div id="users_online" class="col-md-12" style="    min-height: 80px;    height: 300px;">
-										<dl>
+										<dl style="padding: 0px 0px 0px 15px;">
 											<div class="row">
 												<div class="col-md-12" style="width:100%;">
 													<ul class="discussions">
@@ -575,8 +576,8 @@
 															@if ($count === 10)
 																@break
 															@else
-																<li style="position: relative;display:block;margin-left:0px;height: 90px;">
-																		<a class="discussion_list most_viewed" style="margin-top: 10px;margin-bottom:10px;position:absolute;top:0;" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion_->category->slug }}/{{ $discussion_->slug }}">
+																<li class="discussion_item">
+																		<a class="discussion_list most_viewed discussion_link" href="/{{ Config::get('chatter.routes.home') }}/{{ Config::get('chatter.routes.discussion') }}/{{ $discussion_->category->slug }}/{{ $discussion_->slug }}">
 																			<div class="chatter_avatar avatar_small">
 																				@if(Config::get('chatter.user.avatar_image_database_field'))
 									
@@ -597,14 +598,14 @@
 									
 																				@endif
 																			</div>
-																			<div class="chatter_middle title_small">
+																			<div class="chatter_middle title_small" style="margin-top:0px;">
 																				<h3 class="chatter_middle_title "><p>{{ $discussion_->title }}</p> <div class="chatter_cat" style="background-color:{{ $discussion_->category->color }}">{{ $discussion_->category->name }}</div></h3>
-																				<span class="chatter_middle_details">@lang('chatter::messages.discussion.posted_by') <span data-href="/user">{{ ucfirst($discussion_->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($discussion->created_at))->diffForHumans() }}</span>																				
+																				<span class="chatter_middle_details">@lang('chatter::messages.discussion.posted_by') <span data-href="/user">{{ ucfirst($discussion_->user->{Config::get('chatter.user.database_field_with_user_name')}) }}</span></span>																				
 																			</div>
 									
-																			<div class="chatter_right">
+																			<div class="chatter_right" style="    left: calc(100% - 50px);">
 									
-																				<div class="chatter_count" style="    transform: translate(45px,0px);text-align:center;"><ion-icon class="fix" name="eye"></ion-icon> <br><p class="horiz_align">{{ $discussion_->views }}</p></div>
+																				<div class="chatter_count" style="text-align:center;"><ion-icon class="fix" name="eye"></ion-icon> <br><p class="horiz_align">{{ $discussion_->views }}</p></div>
 																			</div>
 									
 																			<div class="chatter_clear"></div>
@@ -629,7 +630,7 @@
 				</div>
 		@endif
 	    </div>
-
+		
 	<div id="new_discussion">
 
 
@@ -708,7 +709,30 @@
     </div><!-- #new_discussion -->
 
 </div>
-
+<footer class="footer bg-dark pt-5">
+	<div class="container">
+		<ul class="list-unstyled list-inline text-center">
+			<li class="list-inline-item">
+				<a class="btn-floating btn-fb mx-1">
+				<i class="fa fa-facebook-f text-white"> </i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-tw mx-1">
+				<i class="fa fa-twitter text-white"> </i>
+				</a>
+			</li>
+			<li class="list-inline-item">
+				<a class="btn-floating btn-gplus mx-1">
+				<i class="fa fa-instagram text-white"> </i>
+				</a>
+			</li>            
+		</ul>
+	</div>
+	<div class="footer-copyright text-center py-3 text-white">© 2019 Copyright:
+		<a href=""> No Limit Roleplay</a>
+	</div>
+</footer>
 @if( $chatter_editor == 'tinymce' || empty($chatter_editor) )
 	<input type="hidden" id="chatter_tinymce_toolbar" value="{{ Config::get('chatter.tinymce.toolbar') }}">
 	<input type="hidden" id="chatter_tinymce_plugins" value="{{ Config::get('chatter.tinymce.plugins') }}">
