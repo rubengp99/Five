@@ -30,8 +30,6 @@ Using the default auth of laravel, just customized the default design with mine 
 
 This section is where you can find what you are looking for, starting with disscussions related to any topic or you can just chat with other users in real time.
 
-![6](screenshots/forum1.png)
-
 ![7](screenshots/forum2.png)
 
 ![8](screenshots/forum3.png)
