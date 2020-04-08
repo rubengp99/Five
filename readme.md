@@ -48,3 +48,4 @@ This is where you can post a reply to any disscussion you decided to participate
 ![12](screenshots/discussion.png)
 
 
+Coded with :heart: by [Rubén García](https://rubengarcia.herokuapp.com/)
